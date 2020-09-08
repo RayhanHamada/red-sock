@@ -1,3 +1,4 @@
+
 import { Store } from 'redux';
 import { connect } from 'socket.io-client';
 
@@ -11,15 +12,15 @@ type CustomSocket<
 > = Omit<SocketIOClient.Socket, 'on' | 'off' | 'once'> & {
   on: (
     event: Name | (string & { ignore?: any }),
-    fn: Record<Name, Fn>[Name] | Function | undefined
+    fn: Record<Name, Fn>[Name] | ((...args: any) => any) | undefined
   ) => SocketIOClient.Emitter;
   once: (
     event: Name | (string & { ignore?: any }),
-    fn: Function | undefined
+    fn: ((...args: any) => any) | undefined
   ) => SocketIOClient.Emitter;
   off: (
     event: Name | (string & { ignore?: any }),
-    fn?: Function | undefined
+    fn?: ((...args: any) => any) | undefined
   ) => SocketIOClient.Emitter;
 };
 
