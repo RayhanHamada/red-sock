@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "fmt": "prettier --write ./src/**/*.ts",
+    "fmt": "prettier --write ./{src,__test__}/**/*.ts",
     "test": "ts-mocha ./__test__/**/*.spec.ts",
-    "dev:server": ""
+    "dev:server": "nodemon ./__test__/server.ts"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",

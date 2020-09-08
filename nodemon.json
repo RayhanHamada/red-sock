@@ -1,0 +1,6 @@
+{
+  "ext": "ts",
+  "legacyWatch": true,
+  "watch": ["./__test__/server.ts"],
+  "exec": "ts-node ./__test__/server.ts"
+}
