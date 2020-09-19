@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import { connectSocketToRedux } from '../src/index';
 import { store } from './clientSetup';
-import { server } from './server';
+import { io } from './server';
 
 /**
  * connect socket listener to store
@@ -64,24 +64,6 @@ const socket = connectSocketToRedux(store, 'http://localhost:3000')
   }));
 
 describe('Socket', function () {
-  this.beforeAll(function (done) {
-    server.listen(3000);
-    done();
-  });
-
-  this.afterEach(function (done) {
-    socket.disconnect();
-    done();
-  });
-
-  this.afterAll(function (done) {
-    server.close(err => {
-      if (err) console.error(err);
-      console.log(`server closed`);
-    });
-    done();
-  });
-
   /**
    * ===TEST===
    */
@@ -98,17 +80,7 @@ describe(`Store's`, function () {
   describe('count reducer', function () {
     this.timeout(5000);
 
-    this.beforeAll(function (done) {
-      server.listen(3000);
-      done();
-    });
-
-    this.beforeEach(function (done) {
-      socket.connect();
-      done();
-    });
-
-    this.afterEach(function (done) {
+    this.afterEach(function () {
       store.dispatch({
         type: 'resetCount',
       });
@@ -116,9 +88,6 @@ describe(`Store's`, function () {
       store.dispatch({
         type: 'resetTodo',
       });
-
-      socket.disconnect();
-      done();
     });
 
     this.afterAll(function (done) {
@@ -131,7 +100,7 @@ describe(`Store's`, function () {
       });
 
       socket.close();
-      server.close();
+      io.close();
       done();
     });
 

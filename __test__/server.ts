@@ -1,11 +1,9 @@
 /**
  * initialize temporary server for testing
  */
-import { createServer } from 'http';
 import socketio from 'socket.io';
 
-export const server = createServer();
-const io = socketio(server);
+export const io = socketio(3000);
 
 io.on('connection', client => {
   //   console.log(`client with socket id of ${client.id} connected !`);
