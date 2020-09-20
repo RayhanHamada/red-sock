@@ -1,5 +1,5 @@
 {
-    "hooks": {
-        "pre-commit": "yarn lint && yarn fmt && yarn test"
-    }
+  "hooks": {
+    "pre-commit": "yarn lint && yarn fmt && yarn test"
+  }
 }
