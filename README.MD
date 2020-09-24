@@ -1,5 +1,4 @@
 # Red-Sock 
-[![Build Status](https://travis-ci.org/RayhanHamada/red-sock.svg?branch=master)](https://travis-ci.org/RayhanHamada/red-sock)
 
 A package for making connection between redux and socket.io-client
 
