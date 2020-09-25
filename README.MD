@@ -5,9 +5,9 @@ A package for making connection between redux and socket.io-client
 ## Install
 
 ```sh
-yarn add red-sock
+yarn add @mocchapine/red-sock
 // or
-npm i red-sock
+npm i @mocchapine/red-sock
 ```
 
 ## Usage
