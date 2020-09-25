@@ -1,4 +1,4 @@
-# red-sock
+# red-sock ![Node.js Package](https://github.com/RayhanHamada/red-sock/workflows/Node.js%20Package/badge.svg)
 
 A package for making connection between redux and socket.io-client
 
