@@ -2,6 +2,14 @@
 
 A package for making connection between redux and socket.io-client
 
+## Install
+
+```sh
+yarn add red-sock
+// or
+npm i red-sock
+```
+
 ## Usage
 
 Assumed that you have create a redux store, you could do
