@@ -1,0 +1,5 @@
+{
+  "ext": "*",
+  "legacyWatch": true,
+  "exec": "node ./src/server.js"
+}
