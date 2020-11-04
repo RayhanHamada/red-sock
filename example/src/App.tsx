@@ -24,6 +24,8 @@ const App: React.FC<Props> = props => {
       >
         Activate auto Increment !
       </button>
+      <br />
+      <br />
       <button
         onClick={() => {
           socket.emit('activate_decrement');
