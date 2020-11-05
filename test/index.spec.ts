@@ -1,13 +1,19 @@
 import { expect } from 'chai';
+import { connect } from 'socket.io-client';
 
-import { connectSocketToRedux } from '../src/index';
+import { connectRedSock } from '../src/index';
 import { store } from './clientSetup';
 import { io } from './server';
 
 /**
+ * create socket
+ */
+const socket = connect('http://localhost:3000');
+
+/**
  * connect socket listener to store
  */
-const socket = connectSocketToRedux(store, 'http://localhost:3000')
+const newSocket = connectRedSock(store, socket)
   /**
    * register socket event to the actual socket
    */
@@ -68,11 +74,11 @@ describe('Socket', function () {
    * ===TEST===
    */
   it('should receive pong from server', function () {
-    socket.on('pong', function (receive: string) {
+    newSocket.on('pong', function (receive: string) {
       expect(receive).to.be.equal('pong');
     });
 
-    socket.emit('ping');
+    newSocket.emit('ping');
   });
 });
 
@@ -99,7 +105,7 @@ describe(`Store's`, function () {
         type: 'resetTodo',
       });
 
-      socket.close();
+      newSocket.close();
       io.close();
       done();
     });
@@ -108,7 +114,7 @@ describe(`Store's`, function () {
      * ===TEST===
      */
     it('should increment state by 1', function (done) {
-      socket.emit('inc');
+      newSocket.emit('inc');
 
       setTimeout(() => {
         const countState = store.getState().count;
@@ -118,7 +124,7 @@ describe(`Store's`, function () {
     });
 
     it('should decrement state by 1', function (done) {
-      socket.emit('dec');
+      newSocket.emit('dec');
 
       setTimeout(() => {
         const countState = store.getState().count;
@@ -128,7 +134,7 @@ describe(`Store's`, function () {
     });
 
     it('should asynchronously increment state by 1', function (done) {
-      socket.emit('async-inc');
+      newSocket.emit('async-inc');
 
       setTimeout(() => {
         expect(store.getState().count).to.be.equal(1);

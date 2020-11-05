@@ -1,5 +1,4 @@
 import { Store } from 'redux';
-import { connect } from 'socket.io-client';
 
 /**
  * @description A customized SocketIOClient.Socket, just add event typing
@@ -44,13 +43,11 @@ type EventRegisterCreator<St extends Store<any, any>> = {
  */
 type ConnectionCreator = <St extends Store<any, any>>(
   store: St,
-  url: string,
-  config?: SocketIOClient.ConnectOpts
+  socket: SocketIOClient.Socket
 ) => EventRegisterCreator<St>;
 
-export const connectSocketToRedux: ConnectionCreator = (store, url, config) => {
+export const connectRedSock: ConnectionCreator = (store, socket) => {
   try {
-    const socket = connect(url, config);
     const { emit } = socket;
     const { dispatch, getState } = store;
 
