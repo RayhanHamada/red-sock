@@ -67,5 +67,5 @@
     "forceConsistentCasingInFileNames": true,  /* Disallow inconsistently-cased references to the same file. */
     "noErrorTruncation": true
   },
-  "exclude": ["__test__", "node_modules", "example"]
+  "exclude": ["test", "node_modules", "example"]
 }
