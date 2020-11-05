@@ -28,6 +28,14 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
+      - uses: JesseTG/rm@v1.0.0
+        with:
+          # remove example folder
+          path: ./example
+      - uses: JesseTG/rm@v1.0.0
+        with:
+          # remove test folder
+          path: ./test
       - run: npm i
       - run: npm run build
       - uses: JS-DevTools/npm-publish@v1
